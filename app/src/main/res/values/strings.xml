@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MovieDetails</string>
+    <string name="enter_movie_name">Enter movie name</string>
+    <string name="movie_details">Movie Details</string>
+    <string name="title">Title</string>
+    <string name="overview">Overview</string>
+    <string name="release_date">Release Date</string>
+</resources>
