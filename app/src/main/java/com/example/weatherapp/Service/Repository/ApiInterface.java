@@ -14,4 +14,7 @@ import retrofit2.http.Query;
 public interface ApiInterface {
     @GET("search/movie")
     Call<SearchResponse> getSearchResults(@Query("api_key") String apiKey, @Query("query") String searchString);
+
+	@GET("search/movie")
+	Call<SearchResponse> getSearchResultsPage(@Query("api_key") String apiKey, @Query("query") String searchString, @Query("page") int pageNo);
 }

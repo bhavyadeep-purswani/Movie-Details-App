@@ -18,6 +18,9 @@ public class SearchResponse {
     @SerializedName("total_pages")
     private int totalPages;
 
+	@SerializedName("page")
+	private int currentPage;
+
     public List<SearchResult> getSearchResults() {
         return searchResults;
     }
@@ -41,4 +44,12 @@ public class SearchResponse {
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
 }

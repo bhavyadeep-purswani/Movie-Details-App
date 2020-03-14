@@ -29,7 +29,7 @@ public class SearchResultsAdapterViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(SearchResult searchResult) {
         binding.itemText.setText(searchResult.getTitle());
-        binding.itemText.setOnClickListener(v -> clickListener.onItemClicked(searchResult));
+        binding.item.setOnClickListener(v -> clickListener.onItemClicked(searchResult));
         Glide.with(binding.getRoot()).load(IMAGE_API_BASE_URL + searchResult.getPosterPath()).error(R.drawable.ic_no_image).placeholder(R.drawable.ic_no_image).into(binding.itemImage);
     }
 

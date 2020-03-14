@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.Service.Model.ApiResponseField.SearchResult;
@@ -36,6 +37,9 @@ public class SearchFragment extends Fragment implements SearchResultsAdapterView
     private FragmentSearchBinding binding;
     private SearchResultsAdapter adapter;
     private SearchViewModel searchViewModel;
+    private boolean isLoading = false;
+    private int currentPage = 0;
+    private int totalPages = 0;
 
     @Nullable
     @Override
@@ -48,6 +52,7 @@ public class SearchFragment extends Fragment implements SearchResultsAdapterView
 
     private void init() {
         initRecyclerView();
+        initAdapter();
         setDataObserver();
         setTextChangeListener();
     }
@@ -65,14 +70,30 @@ public class SearchFragment extends Fragment implements SearchResultsAdapterView
         binding.searchResults.setAdapter(adapter);
     }
 
+    private void initAdapter() {
+    	binding.searchResults.addOnScrollListener(new RecyclerView.OnScrollListener() {
+			@Override
+			public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+				super.onScrolled(recyclerView, dx, dy);
+				LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+				if (!isLoading) {
+					if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == adapter.getItemCount() - 1) {
+						loadNextPage();
+						isLoading = true;
+					}
+				}
+			}
+		});
+	}
+
     private void setDataObserver() {
         searchViewModel.getSearchResponseLiveData()
-                .observe(this, new Observer<SearchResponse>() {
-                    @Override
-                    public void onChanged(SearchResponse searchResponse) {
-                        adapter.setSearchResults(searchResponse.getSearchResults());
-                    }
-                });
+                .observe(this, searchResponse -> {
+                	currentPage = searchResponse.getCurrentPage();
+                	totalPages = searchResponse.getTotalPages();
+                	adapter.setSearchResults(searchResponse.getSearchResults());
+                	isLoading = false;
+				});
     }
 
     private void setTextChangeListener() {
@@ -118,8 +139,15 @@ public class SearchFragment extends Fragment implements SearchResultsAdapterView
 
                     }
                 });
-
     }
+
+    private void loadNextPage() {
+    	if (currentPage < totalPages) {
+			adapter.searchResults.add(null);
+			adapter.notifyItemInserted(adapter.getItemCount() - 1);
+			searchViewModel.loadNextPage(currentPage+1);
+		}
+	}
 
     @Override
     public void onItemClicked(SearchResult searchResult) {
