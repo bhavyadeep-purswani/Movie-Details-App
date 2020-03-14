@@ -53,6 +53,10 @@ public class SearchResultsRepository {
         });
     }
 
+    public void clearData() {
+    	searchResultMutableLiveData.setValue(null);
+	}
+
 	public void getNextPage(int pageNo) {
 		searchService.getSearchResultsPage(Constants.API_KEY, searchQuery, pageNo).enqueue(new Callback<SearchResponse>() {
 			@Override

@@ -59,7 +59,7 @@ public class SearchFragment extends Fragment implements SearchResultsAdapterView
 
     @Override
     public void onDestroy() {
-        adapter.setSearchResults(null);
+        searchViewModel.clearData();
         super.onDestroy();
     }
 
@@ -88,11 +88,13 @@ public class SearchFragment extends Fragment implements SearchResultsAdapterView
 
     private void setDataObserver() {
         searchViewModel.getSearchResponseLiveData()
-                .observe(this, searchResponse -> {
-                	currentPage = searchResponse.getCurrentPage();
-                	totalPages = searchResponse.getTotalPages();
-                	adapter.setSearchResults(searchResponse.getSearchResults());
-                	isLoading = false;
+                .observe(getViewLifecycleOwner(), searchResponse -> {
+                	if (searchResponse != null) {
+						currentPage = searchResponse.getCurrentPage();
+						totalPages = searchResponse.getTotalPages();
+						adapter.setSearchResults(searchResponse.getSearchResults());
+						isLoading = false;
+					}
 				});
     }
 

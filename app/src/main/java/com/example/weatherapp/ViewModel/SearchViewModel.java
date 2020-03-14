@@ -35,4 +35,8 @@ public class SearchViewModel extends AndroidViewModel {
     public void loadNextPage(int pageNo) {
 		SearchResultsRepository.getInstance().getNextPage(pageNo);
 	}
+
+	public void clearData() {
+    	SearchResultsRepository.getInstance().clearData();
+	}
 }
