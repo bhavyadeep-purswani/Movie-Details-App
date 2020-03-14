@@ -1,11 +1,11 @@
-package com.example.weatherapp.Service.Repository;
+package com.example.movieapp.Service.Repository;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.weatherapp.Service.Model.ApiResponseField.SearchResult;
-import com.example.weatherapp.Service.Model.Constants;
-import com.example.weatherapp.Service.Model.SearchResponse;
+import com.example.movieapp.Service.Model.ApiResponseField.SearchResult;
+import com.example.movieapp.Service.Model.Constants;
+import com.example.movieapp.Service.Model.SearchResponse;
 
 import java.util.List;
 

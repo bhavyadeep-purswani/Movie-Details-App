@@ -1,4 +1,4 @@
-package com.example.weatherapp.View;
+package com.example.movieapp.View;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,16 +11,14 @@ import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weatherapp.R;
-import com.example.weatherapp.Service.Model.ApiResponseField.SearchResult;
-import com.example.weatherapp.Service.Model.SearchResponse;
-import com.example.weatherapp.ViewModel.SearchViewModel;
-import com.example.weatherapp.databinding.FragmentSearchBinding;
+import com.example.movieapp.R;
+import com.example.movieapp.Service.Model.ApiResponseField.SearchResult;
+import com.example.movieapp.ViewModel.SearchViewModel;
+import com.example.movieapp.databinding.FragmentSearchBinding;
 
 import java.util.concurrent.TimeUnit;
 

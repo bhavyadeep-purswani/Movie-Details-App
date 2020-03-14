@@ -1,11 +1,11 @@
-package com.example.weatherapp.View;
+package com.example.movieapp.View;
 
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weatherapp.databinding.LoadingViewItemBinding;
+import com.example.movieapp.databinding.LoadingViewItemBinding;
 
 /*
  * Created by bhavyadeeppurswani on 14/03/20.

@@ -1,16 +1,14 @@
-package com.example.weatherapp.View;
+package com.example.movieapp.View;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weatherapp.R;
-import com.example.weatherapp.Service.Model.ApiResponseField.SearchResult;
-import com.example.weatherapp.Service.Model.SearchResponse;
+import com.example.movieapp.R;
+import com.example.movieapp.Service.Model.ApiResponseField.SearchResult;
 
 import java.util.ArrayList;
 import java.util.List;

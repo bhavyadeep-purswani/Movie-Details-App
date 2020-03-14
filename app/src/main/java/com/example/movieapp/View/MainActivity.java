@@ -1,4 +1,4 @@
-package com.example.weatherapp.View;
+package com.example.movieapp.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.example.weatherapp.R;
+import com.example.movieapp.R;
 
 public class MainActivity extends AppCompatActivity {
 

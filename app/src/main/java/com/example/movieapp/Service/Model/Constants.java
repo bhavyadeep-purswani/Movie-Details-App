@@ -1,4 +1,4 @@
-package com.example.weatherapp.Service.Model;
+package com.example.movieapp.Service.Model;
 
 /*
  * Created by bhavyadeeppurswani on 2020-03-02.

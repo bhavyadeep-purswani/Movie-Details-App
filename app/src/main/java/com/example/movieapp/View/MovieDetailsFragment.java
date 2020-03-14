@@ -1,4 +1,4 @@
-package com.example.weatherapp.View;
+package com.example.movieapp.View;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +11,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.example.weatherapp.R;
-import com.example.weatherapp.Service.Model.ApiResponseField.SearchResult;
-import com.example.weatherapp.Service.Model.Constants;
-import com.example.weatherapp.databinding.FragmentMovieDetailsBinding;
+import com.example.movieapp.R;
+import com.example.movieapp.Service.Model.ApiResponseField.SearchResult;
+import com.example.movieapp.Service.Model.Constants;
+import com.example.movieapp.databinding.FragmentMovieDetailsBinding;
 
 /*
  * Created by bhavyadeeppurswani on 14/03/20.

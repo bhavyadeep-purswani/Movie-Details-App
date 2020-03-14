@@ -1,7 +1,7 @@
-package com.example.weatherapp.Service.Repository;
+package com.example.movieapp.Service.Repository;
 
 
-import com.example.weatherapp.Service.Model.Constants;
+import com.example.movieapp.Service.Model.Constants;
 import com.google.gson.GsonBuilder;
 
 import okhttp3.OkHttpClient;

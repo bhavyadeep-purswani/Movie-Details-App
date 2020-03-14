@@ -1,6 +1,6 @@
-package com.example.weatherapp.Service.Model;
+package com.example.movieapp.Service.Model;
 
-import com.example.weatherapp.Service.Model.ApiResponseField.SearchResult;
+import com.example.movieapp.Service.Model.ApiResponseField.SearchResult;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

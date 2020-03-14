@@ -1,4 +1,4 @@
-package com.example.weatherapp.ViewModel;
+package com.example.movieapp.ViewModel;
 
 import android.app.Application;
 
@@ -6,11 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.weatherapp.Service.Model.ApiResponseField.SearchResult;
-import com.example.weatherapp.Service.Model.SearchResponse;
-import com.example.weatherapp.Service.Repository.SearchResultsRepository;
-
-import java.util.List;
+import com.example.movieapp.Service.Model.SearchResponse;
+import com.example.movieapp.Service.Repository.SearchResultsRepository;
 
 /*
  * Created by bhavyadeeppurswani on 2020-03-02.

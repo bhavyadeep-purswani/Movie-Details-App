@@ -1,7 +1,7 @@
-package com.example.weatherapp.Service.Repository;
+package com.example.movieapp.Service.Repository;
 
 
-import com.example.weatherapp.Service.Model.SearchResponse;
+import com.example.movieapp.Service.Model.SearchResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

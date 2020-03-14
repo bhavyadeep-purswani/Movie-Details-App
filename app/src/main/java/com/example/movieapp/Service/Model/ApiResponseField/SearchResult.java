@@ -1,4 +1,4 @@
-package com.example.weatherapp.Service.Model.ApiResponseField;
+package com.example.movieapp.Service.Model.ApiResponseField;
 
 import com.google.gson.annotations.SerializedName;
 

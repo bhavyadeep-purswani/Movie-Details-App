@@ -1,17 +1,16 @@
-package com.example.weatherapp.View;
+package com.example.movieapp.View;
 
 import android.view.View;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.weatherapp.R;
-import com.example.weatherapp.Service.Model.ApiResponseField.SearchResult;
-import com.example.weatherapp.databinding.SearchListItemBinding;
+import com.example.movieapp.R;
+import com.example.movieapp.Service.Model.ApiResponseField.SearchResult;
+import com.example.movieapp.databinding.SearchListItemBinding;
 
-import static com.example.weatherapp.Service.Model.Constants.IMAGE_API_BASE_URL;
+import static com.example.movieapp.Service.Model.Constants.IMAGE_API_BASE_URL;
 
 /*
  * Created by bhavyadeeppurswani on 2020-03-02.
