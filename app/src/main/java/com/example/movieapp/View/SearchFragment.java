@@ -20,11 +20,6 @@ import com.example.movieapp.Service.Model.ApiResponseField.SearchResult;
 import com.example.movieapp.ViewModel.SearchViewModel;
 import com.example.movieapp.databinding.FragmentSearchBinding;
 
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
 /*
@@ -36,8 +31,6 @@ public class SearchFragment extends Fragment implements SearchResultsAdapterView
     private SearchResultsAdapter adapter;
     private SearchViewModel searchViewModel;
     private boolean isLoading = false;
-    private int currentPage = 0;
-    private int totalPages = 0;
 
     @Nullable
     @Override
@@ -88,11 +81,11 @@ public class SearchFragment extends Fragment implements SearchResultsAdapterView
         searchViewModel.getSearchResponseLiveData()
                 .observe(getViewLifecycleOwner(), searchResponse -> {
                 	if (searchResponse != null) {
-						currentPage = searchResponse.getCurrentPage();
-						totalPages = searchResponse.getTotalPages();
 						adapter.setSearchResults(searchResponse.getSearchResults());
-						isLoading = false;
+					} else {
+                		adapter.setSearchResults(null);
 					}
+					isLoading = false;
 				});
     }
 
@@ -110,42 +103,14 @@ public class SearchFragment extends Fragment implements SearchResultsAdapterView
                 return false;
             }
         });
-        subject.debounce(300, TimeUnit.MILLISECONDS)
-                .distinctUntilChanged()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.Observer<String>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(String s) {
-                        if (s.length() >= 3) {
-                            searchViewModel.updateResults(s);
-                        } else {
-                            adapter.setSearchResults(null);
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+        searchViewModel.monitorTextView(subject);
     }
 
     private void loadNextPage() {
-    	if (currentPage < totalPages) {
-			adapter.searchResults.add(null);
+    	if (searchViewModel.checkHasNextPage()) {
+			adapter.addToSearchResults(null);
 			adapter.notifyItemInserted(adapter.getItemCount() - 1);
-			searchViewModel.loadNextPage(currentPage+1);
+			searchViewModel.loadNextPage();
 		}
 	}
 

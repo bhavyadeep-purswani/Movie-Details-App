@@ -21,6 +21,8 @@ public class SearchResultsRepository {
     private static SearchResultsRepository searchResultsRepository;
     private MutableLiveData<SearchResponse> searchResultMutableLiveData;
     private String searchQuery;
+    private int currentPage = 0;
+    private int totalPages = 0;
 
     private SearchResultsRepository() {
         searchService = ApiClient.getClient().create(ApiInterface.class);
@@ -39,26 +41,37 @@ public class SearchResultsRepository {
     }
 
     public void updateSearchResults(String searchQuery) {
-    	this.searchQuery = searchQuery;
-        searchService.getSearchResults(Constants.API_KEY, searchQuery).enqueue(new Callback<SearchResponse>() {
-            @Override
-            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
-                searchResultMutableLiveData.setValue(response.body());
-            }
+    	if (searchQuery.length() >= 3) {
+			this.searchQuery = searchQuery;
+			searchService.getSearchResults(Constants.API_KEY, searchQuery).enqueue(new Callback<SearchResponse>() {
+				@Override
+				public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+					currentPage = response.body().getCurrentPage();
+					totalPages = response.body().getTotalPages();
+					searchResultMutableLiveData.setValue(response.body());
+				}
 
-            @Override
-            public void onFailure(Call<SearchResponse> call, Throwable t) {
+				@Override
+				public void onFailure(Call<SearchResponse> call, Throwable t) {
 
-            }
-        });
+				}
+			});
+		} else {
+    		searchResultMutableLiveData.setValue(null);
+		}
     }
 
     public void clearData() {
     	searchResultMutableLiveData.setValue(null);
 	}
 
-	public void getNextPage(int pageNo) {
-		searchService.getSearchResultsPage(Constants.API_KEY, searchQuery, pageNo).enqueue(new Callback<SearchResponse>() {
+	public boolean hasNextPage() {
+    	return currentPage < totalPages;
+	}
+
+	public void getNextPage() {
+		currentPage++;
+		searchService.getSearchResultsPage(Constants.API_KEY, searchQuery, currentPage).enqueue(new Callback<SearchResponse>() {
 			@Override
 			public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
 				List<SearchResult> updatedResults = searchResultMutableLiveData.getValue().getSearchResults();

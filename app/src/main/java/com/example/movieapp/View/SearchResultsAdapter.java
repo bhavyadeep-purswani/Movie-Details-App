@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public List<SearchResult> searchResults;
+    private List<SearchResult> searchResults;
     private SearchResultsAdapterViewHolder.ClickListener clickListener;
     private final int VIEW_TYPE_LOADING = 0;
     private final int VIEW_TYPE_ITEM = 1;
@@ -63,6 +63,10 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
         notifyDataSetChanged();
     }
+
+    public void addToSearchResults(SearchResult searchResult) {
+    	this.searchResults.add(searchResult);
+	}
 
     @Override
     public int getItemCount() {
